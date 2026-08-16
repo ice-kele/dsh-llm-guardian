@@ -28,3 +28,13 @@ test('credentials are placeholders rather than committed secrets', async () => {
   assert.match(source, /Authorization: "Bearer \{\{apiKey\}\}"/u)
   assert.doesNotMatch(source, /sk-[A-Za-z0-9_-]{12,}/u)
 })
+
+test('local usage statistics are mounted from the session-query service', async () => {
+  const [host, client] = await Promise.all([read('lib/index.js'), read('lib/client.js')])
+  assert.match(host, /'sessionQuery'/u)
+  assert.match(host, /statsRangeDays/u)
+  assert.match(host, /heatmapDays/u)
+  assert.match(client, /function UsageSection\(/u)
+  assert.match(client, /id: "local-usage-stats"/u)
+  assert.match(client, /settings\.section/u)
+})

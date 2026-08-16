@@ -10,12 +10,19 @@
 
 ![Provider 连通检测与用量控制](docs/images/provider-cards.png)
 
+## 本地用量统计
+
+独立统计页面从本机会话日志聚合最近 7、30 或 90 天的数据，支持选择模型，并展示汇总指标、活跃热力图、自适应按天 Token 趋势、模型占比以及鼠标悬停明细。
+
+![本地模型用量统计](docs/images/usage-dashboard.jpg)
+
 ## 功能
 
 - 定时及手动 Provider 连通检测。
 - 本地 Token 计数，并可在超过额度后拦截新请求。
 - 按 Provider 查询账户余额或套餐用量，支持超时与自动刷新设置。
 - 内置 DeepSeek 余额和智谱 Coding Plan 额度查询适配。
+- 本机会话统计，包含模型筛选、活跃热力图、按天 Token 趋势和模型占比。
 - 自定义查询具备密钥脱敏、响应大小限制和同源限制。
 
 ## 从 GitHub 安装
@@ -36,6 +43,11 @@ dsh plugin add github:ice-kele/dsh-llm-guardian
 - 连通检测访问当前 Provider 配置的模型发现端点。
 - 用量查询仅允许访问 Provider 同源 HTTPS 地址；本机 Provider 可使用回环 HTTP。
 - 本地计数和查询结果存放在 `llm-guardian` 设置命名空间。
+- 统计数据只从本机 DSH 会话日志计算，本插件不会上传这些统计结果。
+
+## 插件市场
+
+本项目按照普通、可组合的 DSH 插件实现，不依赖 Electron 私有接口。如果 DSH Desktop 暂不直接内置或引用，希望后续可以将它收录到插件市场。仓库会添加 `dsh-plugin` topic，便于生态发现与检索。
 
 ## 开发检查
 

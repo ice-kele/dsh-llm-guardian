@@ -10,12 +10,19 @@ The plugin contributes a health-test action, a model-usage action, and a compact
 
 ![Provider health and usage controls](docs/images/provider-cards.png)
 
+## Local usage dashboard
+
+The optional dashboard aggregates local session logs into 7, 30, or 90-day views. It includes model filtering, summary metrics, an activity heatmap, a responsive daily token chart, model share, and detailed hover values.
+
+![Local model usage dashboard](docs/images/usage-dashboard.jpg)
+
 ## Features
 
 - Periodic and on-demand provider health checks.
 - Local token counters and optional request blocking after a configured quota is reached.
 - Provider-scoped account or plan usage queries with explicit timeout and refresh controls.
 - Built-in query adapters for DeepSeek balance and Z.AI Coding Plan quotas.
+- Local session-log statistics with model filtering, activity heatmap, daily token trends, and model share.
 - Secret redaction, response-size limits, and same-origin restrictions for custom usage queries.
 
 ## Install from GitHub
@@ -36,6 +43,11 @@ The plugin prefers the typed `settings.models.provider.action` and `settings.mod
 - Health checks call the configured provider model-discovery endpoint.
 - Usage queries are limited to HTTPS endpoints on the provider origin; loopback HTTP is allowed for local providers.
 - Local counters and query results are stored in the `llm-guardian` settings namespace.
+- Dashboard statistics are computed locally from DSH session logs and are not uploaded by this plugin.
+
+## Plugin marketplace
+
+This project is designed as an ordinary composable DSH plugin and uses no Electron-only API. If DSH Desktop does not bundle or directly reference it, we would appreciate the project being considered for the forthcoming plugin marketplace. Add the repository topic `dsh-plugin` to keep ecosystem discovery machine-readable.
 
 ## Development
 
