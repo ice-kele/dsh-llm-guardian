@@ -1,0 +1,63 @@
+{
+  "name": "dsh-llm-guardian",
+  "version": "0.1.0",
+  "description": "Provider health, quota, account usage, and local model usage statistics for DeepSeek Harness",
+  "type": "module",
+  "license": "MIT",
+  "author": "ice-kele",
+  "homepage": "https://github.com/ice-kele/dsh-llm-guardian#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ice-kele/dsh-llm-guardian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ice-kele/dsh-llm-guardian/issues"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "lib/",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check lib/index.js && node --check lib/client.js && node --test"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-api-remotes": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-runtime": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-settings-models": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-settings": "0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "llm",
+    "provider-health",
+    "token-usage"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-settings-models",
+        "@deepseek-ai/dsh-api-remotes"
+      ],
+      "platform": "web"
+    }
+  }
+}
