@@ -12,6 +12,13 @@ test('package metadata exposes the host and browser plugins', async () => {
   assert.equal(manifest.exports['./client'], './lib/client.js')
   assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml')
   assert.equal(manifest.dsh.client.platform, 'web')
+  assert.equal(manifest.peerDependencies['@deepseek-ai/dsh-api-remotes'], '0.1.0-rc.7')
+  assert.equal(manifest.peerDependencies['@deepseek-ai/dsh-client-runtime'], '0.1.0-rc.7')
+  assert.equal(manifest.peerDependencies['@deepseek-ai/dsh-client-ui-settings-models'], '0.1.0-rc.7')
+  assert.equal(manifest.peerDependencies['@deepseek-ai/dsh-settings'], '0.1.0-rc.7')
+  for (const name of Object.keys(manifest.peerDependencies)) {
+    assert.equal(manifest.peerDependenciesMeta[name]?.optional, true)
+  }
 })
 
 test('host and client agree on the local API path and public module id', async () => {
