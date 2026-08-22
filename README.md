@@ -6,7 +6,7 @@
 
 ## Provider cards
 
-The plugin contributes a health-test action, a model-usage action, and a compact status summary to every configured provider card.
+The plugin contributes a health-test action, a model-usage action, and a compact status summary to every configured provider card. When a plan API returns quota windows, the card shows the remaining capacity and live reset countdown for windows such as `5h` and `7d`, with green, orange, and red risk states as utilization rises.
 
 ![Provider health and usage controls](docs/images/provider-cards.png)
 
@@ -20,7 +20,7 @@ The optional dashboard aggregates local session logs into 7, 30, or 90-day views
 
 - Periodic and on-demand provider health checks.
 - Local token counters and optional request blocking after a configured quota is reached.
-- Provider-scoped account or plan usage queries with explicit timeout and refresh controls.
+- Provider-scoped account or plan usage queries with `5h` / `7d` quota windows, reset countdowns, and explicit timeout and refresh controls.
 - Built-in query adapters for DeepSeek balance and Z.AI Coding Plan quotas.
 - Local session-log statistics with model filtering, activity heatmap, daily token trends, and model share.
 - Secret redaction, response-size limits, and same-origin restrictions for custom usage queries.
